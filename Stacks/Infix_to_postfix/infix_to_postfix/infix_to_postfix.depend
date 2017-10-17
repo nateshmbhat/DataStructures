@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1508201771 source:/home/Natesh/Documents/My_codes/Algos/Stacks/Infix_to_postfix/infix_to_postfix/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
