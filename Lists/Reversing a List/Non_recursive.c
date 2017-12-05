@@ -61,22 +61,17 @@ void  insert_node( node * head , int data , int pos )
 
 
 
-
-void reverse_list(node * child , node * parent )
+void reverse_list(node * p , node * head)
 {
-    if(child->next  == 0) 
+    if(p->next==0) 
     {
-        printf("%d -> " , child->data) ; 
-        child->next= parent ; 
+        head->next=  p;
         return ; 
     }
-    
-    parent = parent->next; 
-    child = child->next ;
-    reverse_list(child , parent ) ;
 
-    child->next = parent ; 
-    printf("%d ->" , parent->data) ;
+    reverse_list(p->next , head) ;
+    p->next->next = p ;
+    p->next = 0 ;
 }
 
 
@@ -105,9 +100,9 @@ int main()
     insert_node(head , 5 , -1) ; 
     insert_node(head , 6 , -1) ; 
 
-    node * first = head->next ; 
 
     printf("\n\n") ; 
 
-    reverse_list(first->next , first)  ;
+    reverse_list(head->next , head)  ;
+    display(head->next) ; 
 }
