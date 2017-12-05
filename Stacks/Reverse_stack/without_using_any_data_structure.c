@@ -7,6 +7,8 @@ typedef struct
 	int items[100]  ; 
 }STACK ;
 
+
+/// THIS METHOD IS NOT THE CONVENTIONAL PREFERED METHOD OF DOING THIS REVERSING . USE RECURSION TO GET A PERFECT SOLUTUION.
 STACK reverse(STACK s)
 {
 	if(s.top==-1)
@@ -24,6 +26,15 @@ STACK reverse(STACK s)
 	return s ;
 
 }
+
+STACK reverse_using_another_stack(STACK s)
+{
+	if(s.top==-1) return ; 
+	STACK rev = {-1} ;
+	for(int i=0 ; i<=s.top ; i++) rev.items[++rev.top] = s.items[s.top--] ;
+	return rev ; 
+}
+
 
 void display(STACK s)
 {
