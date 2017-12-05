@@ -117,3 +117,45 @@ node * insert_after_key(node * first ,  int data,  int key)
     
     return first ; 
 }
+
+
+void display(node * first)
+{
+    if(!first) return ; 
+    printf("\n") ; 
+    for( ; first ; first = first->next)
+        printf("%d " , first->data) ; 
+
+}
+
+
+int main()
+{
+   int i = 0 ; 
+   node  * first = insert_last(0) ; 
+
+   for(i = 1 ; i<10 ; i++) 
+   {
+    first = insert_last(first ,i )  ; 
+   }
+
+   display(first)  ; 
+
+   first = delete_first(first) ; 
+   display(first) ; 
+
+   first = delete_last(first) ; 
+   display(first) ; 
+
+   first = delete_key(first  , 5) ; 
+   display(first) ; 
+
+   first = insert_after_key(first , 100 , 6) ; 
+   display(first) ; 
+
+   first = insert_last(first , 10) ; 
+   display(first) ; 
+
+
+
+}
