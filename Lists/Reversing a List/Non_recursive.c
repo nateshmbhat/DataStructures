@@ -13,6 +13,7 @@ void  insert_node( node * head , int data , int pos )
 {
     node * newnode = (node * )malloc(sizeof(node)) ; 
     newnode->data = data ;
+    node * temp ; 
 
      
 
@@ -24,16 +25,18 @@ void  insert_node( node * head , int data , int pos )
             break ; 
 
         case -1:
+            ;
 
-            node * temp ;
-            for(temp = head->next ; temp && temp->next  ; temp=temp->next ) ;
+            for(temp = head; temp && temp->next  ; temp=temp->next ) ;
             //Temp now points to last node ;
 
             temp->next = newnode ;
             newnode->next  = NULL ;
+            break ; 
         
         default:
-            node * temp , *parent = head ;
+            ; 
+            node  *parent = head ;
             temp = head->next ;
 
             int i = 0 ; 
@@ -57,13 +60,54 @@ void  insert_node( node * head , int data , int pos )
 }
 
 
-void reverse_list(node * first)
-{
-    if(first == 0) return ; 
 
-    reverse_list(first->next ) ;
-    printf("%d ->" , first->info) ;
+
+void reverse_list(node * child , node * parent )
+{
+    if(child->next  == 0) 
+    {
+        printf("%d -> " , child->data) ; 
+        child->next= parent ; 
+        return ; 
+    }
+    
+    parent = parent->next; 
+    child = child->next ;
+    reverse_list(child , parent ) ;
+
+    child->next = parent ; 
+    printf("%d ->" , parent->data) ;
 }
 
 
+void display(node * first)
+{
+
+    if(!first) return  ; 
+    printf("\n") ; 
+    node * temp  = first ; 
+
+    for(temp = first ; temp  ; temp= temp->next )    
+        printf("%d " , temp->data) ;
+
+}
+
+
+
 int main()
+{
+    node * head = (node *)malloc(sizeof(node)) ;
+    head->data  = head->next = 0 ;
+    insert_node(head , 1 , -1) ; 
+    insert_node(head , 2 , -1) ; 
+    insert_node(head , 3 , -1) ; 
+    insert_node(head , 4 , -1) ; 
+    insert_node(head , 5 , -1) ; 
+    insert_node(head , 6 , -1) ; 
+
+    node * first = head->next ; 
+
+    printf("\n\n") ; 
+
+    reverse_list(first->next , first)  ;
+}
