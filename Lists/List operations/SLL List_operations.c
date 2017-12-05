@@ -130,6 +130,31 @@ void display(node * first)
 }
 
 
+node * delete_all_keys(node * first , int key)
+{
+    node * temp = first  , *parent = first  , *todelete = 0 ; 
+    if(!first) return ; 
+
+    while(temp)
+    {
+        if(temp->data==key)
+        {
+            if(temp ==first) { todelete = first ; first = first->next ; free(todelete) ;  } 
+            else
+            {
+                todelete = temp ; 
+                parent->next = temp->next ; 
+                free(todelete) ; 
+            }
+       }
+
+       parent = temp ; 
+       temp = temp->next ;
+    }
+    return first ; 
+}
+
+
 int main()
 {
    int i = 0 ; 
@@ -140,6 +165,8 @@ int main()
    {
     first = insert_last(first ,i )  ; 
    }
+
+   for(i = 6 ; i<14 ; i++) first = insert_last(first , i) ; 
 
    printf("All elements : ") ; 
    display(first)  ; 
@@ -166,5 +193,8 @@ int main()
    display(first) ; 
 
 
+   first = delete_all_keys(first , 6 )  ;
+   printf("Delete All nodes with key 6 : ") ; 
+   display(first) ; 
 
 }
