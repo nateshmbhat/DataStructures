@@ -46,11 +46,12 @@ node * delete_last(node * first)
     if(parent !=0) 
         parent->next = 0 ; 
     free(temp) ; 
+    return first ; 
 }
 
 node * delete_first(node * first)
 {
-    if(!first) return ; 
+    if(!first) return first ; 
     node *temp = first ; 
     first = first->next ; 
     free(temp) ; 
@@ -86,7 +87,7 @@ node * delete_key(node * first , int key )
 }
 
 
-node * insert_after_key(node * first ,  int data,  int key)
+node * insert_before_key(node * first ,  int data,  int key)
 {
     node * temp = first  , *parent = 0 ;  
     node * newnode = (node * ) malloc(sizeof(node)) ; 
@@ -122,38 +123,46 @@ node * insert_after_key(node * first ,  int data,  int key)
 void display(node * first)
 {
     if(!first) return ; 
-    printf("\n") ; 
     for( ; first ; first = first->next)
         printf("%d " , first->data) ; 
 
+    printf("\n") ; 
 }
 
 
 int main()
 {
    int i = 0 ; 
-   node  * first = insert_last(0) ; 
+   node  * first  = 0 ; 
+   first = insert_last(first  , 0 ) ;
 
    for(i = 1 ; i<10 ; i++) 
    {
     first = insert_last(first ,i )  ; 
    }
 
+   printf("All elements : ") ; 
    display(first)  ; 
 
-   first = delete_first(first) ; 
+
+   first = delete_first(first) ;
+   printf("Delete first : ") ; 
    display(first) ; 
 
    first = delete_last(first) ; 
+   printf("Delete last : ") ; 
    display(first) ; 
 
    first = delete_key(first  , 5) ; 
+   printf("Delete key 5 : ") ; 
    display(first) ; 
 
-   first = insert_after_key(first , 100 , 6) ; 
+   first = insert_before_key(first , 100 , 6) ; 
+   printf("Insert 100 before key 6 : ") ; 
    display(first) ; 
 
    first = insert_last(first , 10) ; 
+   printf("Insert 10 to the last : ") ; 
    display(first) ; 
 
 
