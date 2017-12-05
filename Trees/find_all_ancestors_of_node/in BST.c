@@ -8,6 +8,7 @@ typedef struct node
 }node ;
 
 
+
 node * insert_node(node * root  , int data) 
 {
     
@@ -37,6 +38,8 @@ node * insert_node(node * root  , int data)
     
 }
 
+
+
 void display(node *  root )
 {
     if(root==0) return ; 
@@ -51,7 +54,7 @@ void find_ancestors(node * root  , int key)
 
     if(root==0 ||  root->data==key) return ;
 
-    if(key<root->left) find_ancestors(root->left , key) ; 
+    if(key<root->data) find_ancestors(root->left , key) ; 
     else find_ancestors(root->right , key) ; 
 
     printf("%d " , root->data) ;
@@ -71,12 +74,9 @@ int main()
         insert_node(root , a[i]) ;
 
     
-    printf("Binary Tree : \n\n") ;
-
     display(root) ;  printf("\n") ;
 
-    find_ancestors(root , 125 ) ;
-
-    
+    find_ancestors(root , 6 ) ;
+   
     
 }
