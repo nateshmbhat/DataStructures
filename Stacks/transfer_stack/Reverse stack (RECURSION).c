@@ -22,20 +22,32 @@ int pop(stack * s)
 void inserttobottom(stack * s , int data)
 {
 	int ele  ;
-	ele = pop(s) ; 
 
 	if(s->top==-1)
 	{
 		s->items[++s->top] = data ; 
-		s->items[++s->top] = ele ;
 		return ; 
 	}
 	
+	ele = pop(s) ; 
 	inserttobottom(s , data) ; 
 
 	s->items[++s->top] = ele ; 	
 
-} 
+}
+
+
+void reversestack(stack * s)
+{
+    if(s->top==-1) return ; 
+
+    int ele = pop(s); 
+
+    reversestack(s) ;
+
+    inserttobottom(s ,ele) ;
+    
+}
 
 
 void display(stack s)
@@ -56,6 +68,6 @@ int main()
 		s.items[++s.top] = i ;
 	
 	display(s) ; 
-	inserttobottom(&s , 100) ; 
+    reversestack(&s) ; 
 	display(s) ;	
 }
