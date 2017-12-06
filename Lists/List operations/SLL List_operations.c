@@ -17,6 +17,34 @@ node * insert_first(node * first , int data)
     return newnode ;
 }
 
+node * insert_in_order(node * first , int data)
+{
+    //Implements Ordered SLL
+    node * newnode = (node * )malloc(sizeof(node)) ; 
+    newnode->data =data ; 
+
+    if(!first || data<first->data)
+    {
+        newnode->next = first ; 
+        first = newnode ;  
+        return first ; 
+    }
+
+    node * temp= first->next  , * parent = first; 
+
+    while(temp && data>temp->data)
+    {
+        parent = temp ; 
+        temp = temp->next ; 
+    }
+
+    newnode->next = temp ; 
+    parent->next = newnode ;
+
+    return first ; 
+}
+
+
 node * insert_last(node * first , int data)
 {
     node * newnode = (node * )malloc(sizeof(node)) ; 
@@ -99,10 +127,10 @@ node * insert_before_key(node * first ,  int data,  int key)
         temp = temp->next ; 
     }
 
-    if(parent ==0 )
+    if(parent ==0  || first->data==key)
         {
-            //EMPTY LIST
-            newnode->next =  0 ;
+            newnode->next = first ;
+            first = newnode ;
             return newnode ; 
         }
     
@@ -143,11 +171,12 @@ node * delete_all_keys(node * first , int key)
             else
             {
                 todelete = temp ; 
-                parent->next = temp->next ; 
+                parent->next  = temp->next ; 
+                temp = parent  ;
                 free(todelete) ; 
             }
        }
-
+// temp = 100 , parent = 4
        parent = temp ; 
        temp = temp->next ;
     }
@@ -161,10 +190,13 @@ int main()
    int i = 0 ; 
    node  * first  = 0 ; 
    first = insert_last(first  , 0 ) ;
+   srand(time(0));
+
 
    for(i = 1 ; i<10 ; i++) 
    {
-    first = insert_last(first ,i )  ; 
+
+    first = insert_in_order(first ,rand()%15 )  ; 
    }
 
    for(i = 6 ; i<14 ; i++) first = insert_last(first , i) ; 
