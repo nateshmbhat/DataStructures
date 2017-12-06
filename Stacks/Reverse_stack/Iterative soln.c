@@ -31,7 +31,9 @@ STACK reverse_using_another_stack(STACK s)
 {
 	if(s.top==-1) return ; 
 	STACK rev = {-1} ;
-	for(int i=0 ; i<=s.top ; i++) rev.items[++rev.top] = s.items[s.top--] ;
+	int top = s.top ;
+	for(int i=0 ; i<=top ; i++)
+		 rev.items[++rev.top] = s.items[s.top--] ;
 	return rev ; 
 }
 
@@ -57,7 +59,7 @@ int main(void)
 
 	printf("Before reversing : ") ; 	
 	display(s) ; 
-	s = reverse(s) ; 
+	s = reverse_using_another_stack(s) ; 
 	printf("\n\nAfter reversing : ") ; 
 	display(s) ; 
 

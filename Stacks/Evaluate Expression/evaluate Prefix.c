@@ -45,6 +45,8 @@ int main()
     scanf("%s" , prefix) ; 
     float op1 , op2  , res ; 
     int i = 0 ; 
+
+
     for(i=strlen(prefix)-1 ; i>=0 ; i--)
     {
         ch = prefix[i] ; 
@@ -63,4 +65,5 @@ int main()
     }
 
     printf("Result : %f" , pop(&s)) ;
+
 }
