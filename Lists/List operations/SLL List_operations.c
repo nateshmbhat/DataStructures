@@ -17,6 +17,7 @@ node * insert_first(node * first , int data)
     return newnode ;
 }
 
+
 node * insert_in_order(node * first , int data)
 {
     //Implements Ordered SLL
